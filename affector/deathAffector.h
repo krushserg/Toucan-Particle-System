@@ -1,0 +1,4 @@
+#ifndef DEATHAFFECTOR_H
+#define DEATHAFFECTOR_H
+
+#endif // DEATHAFFECTOR_H

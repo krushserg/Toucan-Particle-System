@@ -1,0 +1,4 @@
+#ifndef BASEAFFECTOR_H
+#define BASEAFFECTOR_H
+
+#endif // BASEAFFECTOR_H
