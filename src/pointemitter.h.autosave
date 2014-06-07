@@ -1,0 +1,11 @@
+#pragma once
+#include "emitter.h"
+namespace toucan
+{
+class PointEmitter : public Emitter
+{
+public:
+    PointEmitter();
+};
+
+}

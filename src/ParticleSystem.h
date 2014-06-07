@@ -18,36 +18,30 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 #pragma once
-#include "particle.h"
 #include "area.h"
-#include "affector.h"
+#include "particle.h"
+
+#include "randomizer.h"
 #include "randomizer/uniformRandomizer.h"
-#include <vector>
-namespace toucan
-{
-using namespace std;
 
-class Affector;
-class Emitter
-{
-public:
+#include "emitter.h"
+#include "emitter/pointEmitter.h"
+#include "emitter/lineEmitter.h"
+#include "emitter/circleEmitter.h"
 
-    void particlesPerSecond(int count);
-    void particlesPerStep(int count);
-    void particlesLifetime(double min_lifetime, double max_lifetime,\
-                   shared_ptr<Randomizer> lifetime_randomizer = make_shared<UniformRandomizer>());
-    void step(vector<Particle>& particles, double dt);
-    virtual Particle operator()() = 0;
-
-    void addAffector(shared_ptr<Affector> affector);
-
-private:
-    vector<shared_ptr<Affector> > affector_data;
-    double last_make_time=0.;
-    int _pps=1;
-    bool _secondmode;
-    shared_ptr<Randomizer> _lifetime_randomizer = make_shared<UniformRandomizer>();
-    double _min_lifetime=1;
-    double _max_lifetime=1;
-};
-}
+#include "affector.h"
+#include "affector/baseAffector.h"
+#include "affector/accelerationAffector.h"
+#include "affector/angularAccelerationAffector.h"
+#include "affector/velocityAffector.h"
+#include "affector/deathAffector.h"
+#include "affector/randomVelocityAffector.h"
+#include "affector/randomAngularVelocityAffector.h"
+#include "affector/randomSizeAffector.h"
+#include "affector/randomAngleAffector.h"
+#include "affector/randomTextureAffector.h"
+#include "affector/randomColorAffector.h"
+#include "affector/randomMaskAffector.h"
+#include "affector/gravityAffector.h"
+#include "affector/angleOnDirectionAffector.h"
+#include "affector/colorFaderAffector.h"

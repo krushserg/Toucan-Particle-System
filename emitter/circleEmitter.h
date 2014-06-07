@@ -1,4 +1,0 @@
-#ifndef CIRCLEEMITTER_H
-#define CIRCLEEMITTER_H
-
-#endif // CIRCLEEMITTER_H

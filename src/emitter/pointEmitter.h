@@ -18,36 +18,39 @@
   3. This notice may not be removed or altered from any source distribution.
 */
 #pragma once
-#include "particle.h"
-#include "area.h"
-#include "affector.h"
-#include "randomizer/uniformRandomizer.h"
-#include <vector>
+#include "emitter.h"
+#include <iostream>
 namespace toucan
 {
 using namespace std;
-
-class Affector;
-class Emitter
+class PointEmitter : public Emitter
 {
 public:
+    PointEmitter()
+        :PointEmitter(0, 0)
+    {
+    }
 
-    void particlesPerSecond(int count);
-    void particlesPerStep(int count);
-    void particlesLifetime(double min_lifetime, double max_lifetime,\
-                   shared_ptr<Randomizer> lifetime_randomizer = make_shared<UniformRandomizer>());
-    void step(vector<Particle>& particles, double dt);
-    virtual Particle operator()() = 0;
+    PointEmitter(double _x, double _y)
+    {
+        setPosition(_x, _y);
+    }
+    void setPosition(double _x, double _y)
+    {
+        x= _x;
+        y= _y;
+    }
 
-    void addAffector(shared_ptr<Affector> affector);
+    Particle operator ()()
+    {
+        Particle p;
+        p.position_x = x;
+        p.position_y = y;
+        return p;
+    }
 
 private:
-    vector<shared_ptr<Affector> > affector_data;
-    double last_make_time=0.;
-    int _pps=1;
-    bool _secondmode;
-    shared_ptr<Randomizer> _lifetime_randomizer = make_shared<UniformRandomizer>();
-    double _min_lifetime=1;
-    double _max_lifetime=1;
+    double x = 0;
+    double y = 0;
 };
 }
