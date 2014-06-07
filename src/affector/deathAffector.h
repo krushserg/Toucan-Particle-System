@@ -36,6 +36,5 @@ public:
         if(particle.lifetime>=particle.lifetime_max)
             particle.dead = true;
     }
-
 };
 }

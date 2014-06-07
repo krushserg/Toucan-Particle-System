@@ -33,9 +33,9 @@ int main()
 
     Area area;
     //area affectors
-    area.addAffector(make_shared<BaseAffector>(0, 10));
-    area.addAffector(make_shared<AngleOnDirectionAffector>());
-
+    area.addAffector(make_shared<BaseAffector>(0, 500));
+   // area.addAffector(make_shared<AngleOnDirectionAffector>());
+/*
     shared_ptr<ColorFaderAffector> cf = make_shared<ColorFaderAffector>();
     cf->setMask(1);
     area.addAffector(cf);
@@ -59,28 +59,23 @@ int main()
     area.addEmitter(pemmouse2);
 
 
-
+*/
 
     //shared_ptr<CircleEmitter> pemmouse = make_shared<CircleEmitter>();
     shared_ptr<PointEmitter> pemmouse = make_shared<PointEmitter>();
-    pemmouse->particlesLifetime(1, 1);
-    pemmouse->particlesPerSecond(0);
+    pemmouse->particlesLifetime(0.1, 1);
+    pemmouse->particlesPerSecond(10000);
 
-    pemmouse->addAffector(rv);
-    pemmouse->addAffector(make_shared<RandomSizeAffector>(30, 50));
+    pemmouse->addAffector(make_shared<RandomVelocityAffector>(190, 350));
+    pemmouse->addAffector(make_shared<RandomSizeAffector>(4, 20));
     pemmouse->addAffector(make_shared<RandomAngleAffector>());
     pemmouse->addAffector(make_shared<RandomAngularVelocityAffector>(-10,10));
     shared_ptr<RandomTextureAffector> randtext = make_shared<RandomTextureAffector>();
-    randtext->addCoords(0,32,32,32);
-    randtext->addCoords(32,0,32,32);
+    randtext->addCoords(0,0,32,32);
     pemmouse->addAffector(randtext);
     shared_ptr<RandomColorAffector> randcolor = make_shared<RandomColorAffector>();
     randcolor->addColor(255,255,45,255);
     pemmouse->addAffector(randcolor);
-    shared_ptr<RandomMaskAffector> randm = make_shared<RandomMaskAffector>();
-    randm->addMask(2);
-
-    pemmouse->addAffector(randm);
 
     area.addEmitter(pemmouse);
 
@@ -100,7 +95,6 @@ int main()
     {
         clock.restart();
 
-        pemmouse->particlesPerStep(0);
 
         sf::Event event;
         while (window.pollEvent(event))
@@ -111,12 +105,12 @@ int main()
             {
                // pemmouse->particlesPerSecond(10100);
                  pemmouse->setPosition(event.mouseMove.x, event.mouseMove.y);
-                 pemmouse2->setPosition(event.mouseMove.x, event.mouseMove.y);
+                 //pemmouse2->setPosition(event.mouseMove.x, event.mouseMove.y);
             }
             if (event.type == sf::Event::MouseButtonPressed)
             {
-                if(event.mouseButton.button == sf::Mouse::Left)
-                    pemmouse->particlesPerStep(1000);
+                if(event.mouseButton.button == sf::Mouse::Left);
+                    window.capture().saveToFile("screen.png");
 
             }
 
@@ -124,8 +118,8 @@ int main()
         }
         area.step(dt);
 
-
         window.clear();
+
 
         sf::RenderStates rs;
         rs.blendMode = sf::BlendAdd;
