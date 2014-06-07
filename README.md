@@ -1,4 +1,4 @@
-<p align="left"><img src="https://raw.github.com/krushserg/Toucan-Particle-System/master/img/logo.png"></p>
+<p align="center"><img src="https://raw.github.com/krushserg/Toucan-Particle-System/master/img/logo.png"></p>
 ======================
 
 c++11 abstract particle system
